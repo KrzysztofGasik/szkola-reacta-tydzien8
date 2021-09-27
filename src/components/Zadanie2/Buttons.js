@@ -3,8 +3,8 @@ import React, { useState } from "react";
 export default function Buttons({ start }) {
   const [counter, updateCounter] = useState(start);
   const [inputVal,setInputVal] = useState("");
-  const incrementHandler = () => updateCounter(counter + 1);
-  const decrementHandler = () => updateCounter(counter - 1);
+  const incrementHandler = () => updateCounter(value=> value + 1);
+  const decrementHandler = () => updateCounter(value=> value - 1);
 
   const changeHandler = (e) =>{
     setInputVal(e.target.value);

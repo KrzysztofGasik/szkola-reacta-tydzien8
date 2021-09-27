@@ -1,5 +1,6 @@
 import sum from "./components/Zadanie1/Zadanie1";
 import Buttons from "./components/Zadanie2/Buttons";
+import Wrapper from "./components/Zadanie3/Wrapper";
 import { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Enzyme from "enzyme";
@@ -41,20 +42,30 @@ describe("zadanie 2 - komponent button", () => {
     expect(counter.text()).toBe("0");
   });
 
-  // it("should have value of input", () => {
-  //   const wrapper = shallow(<Buttons />);
-  //   const inputVal = wrapper.find(".update");
-  //   // const updateBtn = wrapper.find(".updateBtn");
-  //   // updateBtn.simulate("click");
-  //   // const counter = wrapper.find(".counter");
-  //   // expect(counter.text()).toBe("50");
-  // });
+  it("should have value of typed into input - 50", () => {
+    const wrapper = shallow(<Buttons />);
+    const inputVal = wrapper.find(".update");
+    inputVal.simulate("change", { target: { value: "50" } });
+    const updateBtn = wrapper.find(".updateBtn");
+    updateBtn.simulate("click");
+    const counter = wrapper.find(".counter");
+    expect(counter.text()).toBe("50");
+  });
 
-  it("should reset to 0",()=>{
-    const wrapper = shallow(<Buttons start="15"/>);
+  it("should reset to 0", () => {
+    const wrapper = shallow(<Buttons start="15" />);
     const resetBtn = wrapper.find(".resetBtn");
-    resetBtn.simulate("click")
+    resetBtn.simulate("click");
     const counter = wrapper.find(".counter");
     expect(counter.text()).toBe("0");
-  })
+  });
+});
+
+describe("zadanie 3 - component user list", () => {
+  it("should return the user list count", () => {
+    const wrapper = shallow(<Wrapper />);
+    const userList = wrapper.find(".userlist .user");
+    const length = userList.length;
+    expect(userList).toHaveLength(length);
+  });
 });
